@@ -1,32 +1,24 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import classNames from 'classnames';
+import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
-    container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
     textField: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
-        width: 200,
-    },
-    dense: {
-        marginTop: 19,
-    },
-    menu: {
-        width: 200,
-    },
+        width: 300,
+    }
 });
 
 class TextFields extends React.Component {
     state = {
-        name: 'Cat in the Hat',
-        age: '',
-        multiline: 'Controlled',
-        currency: 'EUR',
+        name: '',
+        surname: '',
+        mail: '',
+        phone: '',
+        text: ''
     };
 
     handleChange = name => event => {
@@ -39,23 +31,54 @@ class TextFields extends React.Component {
         const { classes } = this.props;
 
         return (
-            <form className={classes.container} noValidate autoComplete="off">
-                <TextField
-                    id="standard-name"
-                    label="Name"
-                    className={classes.textField}
-                    value={this.state.name}
-                    onChange={this.handleChange('name')}
-                    margin="normal"
-                />
-                <TextField
-                    id="standard-uncontrolled"
-                    label="Uncontrolled"
-                    defaultValue="foo"
-                    className={classes.textField}
-                    margin="normal"
-                />
-            </form>
+            <Grid container spacing={24}>
+                <form className={classes.container} autoComplete="off">
+                    <Grid item xs={12}>
+                        <TextField
+                            id="standard-name"
+                            label="Имя"
+                            className={classes.textField}
+                            value={this.state.name}
+                            onChange={this.handleChange('name')}
+                            margin="normal"
+                        />
+                        <TextField
+                            id="standard-surname"
+                            label="Фамилия"
+                            className={classes.textField}
+                            value={this.state.surname}
+                            onChange={this.handleChange('surname')}
+                            margin="normal"
+                        />
+                    </Grid>
+                    <TextField
+                        id="standard-surname"
+                        label="Почта"
+                        className={classes.textField}
+                        value={this.state.mail}
+                        onChange={this.handleChange('surname')}
+                        margin="normal"
+                    />
+                    <TextField
+                        id="standard-surname"
+                        label="Номер телефона"
+                        className={classes.textField}
+                        value={this.state.phone}
+                        onChange={this.handleChange('phone')}
+                        margin="normal"
+                    />
+
+                    <TextField
+                        id="standard-surname"
+                        label="Дополнительная информация"
+                        className={classes.textField}
+                        value={this.state.text}
+                        onChange={this.handleChange('text')}
+                        margin="normal"
+                    />
+
+                </form>
+            </Grid>
         );
     }
 }
