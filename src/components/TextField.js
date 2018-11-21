@@ -1,10 +1,9 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import classNames from 'classnames';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import Grid from '@material-ui/core/Grid';
 import InputMask from 'react-input-mask';
 import Button from '@material-ui/core/Button';
+import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = () => ({
@@ -25,7 +24,7 @@ const styles = () => ({
     }
 });
 
-class TextFields extends React.Component {
+class Form extends React.Component {
     state = {
         name: '',
         surname: '',
@@ -42,14 +41,17 @@ class TextFields extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        // get our form data out of state
-        const { fname, lname, email } = this.state;
+        const { name, surname, mail, phone, text } = this.state;
 
-        axios.post('/', { fname, lname, email })
+        /* // Здесь обертка axios для отправки запроса, не нашел куда отправить) //
+        axios.post('https://wrqqq.github.io', { name, surname, mail, phone, text })
             .then((result) => {
-                //access the results here....
+                alert(result);
             });
-    }
+            */
+
+        console.log({name, surname, mail, phone, text});
+    };
 
     render() {
         const { classes } = this.props;
@@ -144,4 +146,4 @@ class TextFields extends React.Component {
     }
 }
 
-export default withStyles(styles)(TextFields);
+export default withStyles(styles)(Form);
